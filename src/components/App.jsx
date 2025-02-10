@@ -1,6 +1,5 @@
 import { Route, Routes, NavLink } from 'react-router-dom';
 
-import Layout from './Layout/Layout';
 import Home from 'pages/Home';
 
 export const App = () => {
