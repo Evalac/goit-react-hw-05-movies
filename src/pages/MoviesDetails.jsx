@@ -1,5 +1,5 @@
-function Movies(params) {
+function MoviesDetails(params) {
   return <div>Тут буде контент Детальніше про фільм</div>;
 }
 
-export default Movies;
+export default MoviesDetails;
