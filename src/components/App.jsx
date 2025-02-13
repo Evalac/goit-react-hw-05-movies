@@ -13,7 +13,8 @@ export const App = () => {
       </nav>
       <Routes>
         <Route path="/" element={<Home />} />
-        <Route path="/movies" element={<MoviesDetails />} />
+        {/* <Route path="/movies" element={<MoviesDetails />} /> */}
+        <Route path="/:movieId" element={<MoviesDetails />} />
       </Routes>
     </div>
   );
