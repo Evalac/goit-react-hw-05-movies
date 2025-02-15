@@ -9,6 +9,7 @@ const Status = {
 };
 
 function MoviesDetails() {
+  const [status, setStatus] = useState(Status.IDLE);
   const [movieDetails, setMovieDetails] = useState([]);
   const [error, setError] = useState(null);
 
@@ -43,43 +44,52 @@ function MoviesDetails() {
   }
 
   useEffect(() => {
+    setStatus(Status.PENDING);
     fetchMovieDetails()
       .then(movieInfo => {
         setMovieDetails(movieInfo);
+        setStatus(Status.RESOLVED);
         console.log(movieDetails);
       })
       .catch(error => {
         setError(error);
+        setStatus(Status.REJECTED);
       });
   }, []);
 
-  return (
-    <section>
-      <div>
-        <img src="" alt="" />
-        <ul>
-          <li>
-            <p>{movieDetails.title}</p>
-          </li>
-          <li>
-            <p>User score/popularit: {movieDetails.popularity}</p>
-          </li>
+  if (status === Status.PENDING) {
+    return <p>Завантажується...</p>;
+  }
 
-          <li>
-            <p>Overview</p>
-            <p>{movieDetails.overview}</p>
-          </li>
-          <li>
-            Geners:
-            {/* {movieDetails.genres.map(genres => (
+  if (status === Status.RESOLVED) {
+    return (
+      <section>
+        <div>
+          <img src="" alt="" />
+          <ul>
+            <li>
+              <p>{movieDetails.title}</p>
+            </li>
+            <li>
+              <p>User score/popularit: {movieDetails.popularity}</p>
+            </li>
+
+            <li>
+              <p>Overview</p>
+              <p>{movieDetails.overview}</p>
+            </li>
+            <li>
+              Geners:
+              {/* {movieDetails.genres.map(genres => (
               <p>{genres.name}</p>
             ))} */}
-          </li>
-        </ul>
-      </div>
-      <ul></ul>
-    </section>
-  );
+            </li>
+          </ul>
+        </div>
+        <ul></ul>
+      </section>
+    );
+  }
 }
 
 export default MoviesDetails;
