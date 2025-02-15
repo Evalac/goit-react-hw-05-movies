@@ -90,6 +90,10 @@ function MoviesDetails() {
       </section>
     );
   }
+
+  if (status === Status.REJECTED) {
+    return <p>{error.message}</p>;
+  }
 }
 
 export default MoviesDetails;
