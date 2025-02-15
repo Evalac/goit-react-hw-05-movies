@@ -57,15 +57,25 @@ function MoviesDetails() {
       });
   }, []);
 
+  console.log(
+    `https://api.themoviedb.org/3/movie/${params.movieId}/images${movieDetails.poster_path}`
+  );
+
   if (status === Status.PENDING) {
     return <p>Завантажується...</p>;
   }
 
   if (status === Status.RESOLVED) {
     return (
-      <section>
-        <div>
-          <img src="" alt="" />
+      <main>
+        <section>
+          <div>
+            <img
+              src={`https://image.tmdb.org/t/p/w500${movieDetails.poster_path}`}
+              alt="poster"
+            />
+          </div>
+
           <ul>
             <li>
               <p>{movieDetails.title}</p>
@@ -73,21 +83,20 @@ function MoviesDetails() {
             <li>
               <p>User score/popularit: {movieDetails.popularity}</p>
             </li>
-
             <li>
               <p>Overview</p>
               <p>{movieDetails.overview}</p>
             </li>
             <li>
               Geners:
-              {/* {movieDetails.genres.map(genres => (
-              <p>{genres.name}</p>
-            ))} */}
+              {movieDetails.genres.map(genres => (
+                <p key={genres.id}>{genres.name}</p>
+              ))}
             </li>
           </ul>
-        </div>
+        </section>
         <ul></ul>
-      </section>
+      </main>
     );
   }
 

@@ -1,16 +1,16 @@
-import { NavLink, Link } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
 function MovieList({ movieList }) {
   return (
-    <div>
+    <main>
       <ul>
         {movieList.map(movie => (
           <li key={movie.id}>
-            <Link to={`${movie.id}`}>{movie.title}</Link>
+            <Link to={`/movies/${movie.id}`}>{movie.title}</Link>
           </li>
         ))}
       </ul>
-    </div>
+    </main>
   );
 }
 
