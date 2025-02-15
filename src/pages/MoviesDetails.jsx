@@ -1,4 +1,4 @@
-import { useParams } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 
 const Status = {
@@ -95,7 +95,17 @@ function MoviesDetails() {
             </li>
           </ul>
         </section>
-        <ul></ul>
+        <p>Additional information</p>
+        <nav>
+          <ul>
+            <li>
+              <Link>Cast</Link>
+            </li>
+            <li>
+              <Link>Rewiew</Link>
+            </li>
+          </ul>
+        </nav>
       </main>
     );
   }
