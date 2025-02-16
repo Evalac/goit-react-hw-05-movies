@@ -56,7 +56,24 @@ function Review() {
   }, []);
 
   if (status === Status.RESOLVED) {
-    return <p>Тут буде ревю про фільм</p>;
+    return (
+      <>
+        {reviewData.results.length <= 0 ? (
+          <p>We don't have any reviews for this movie</p>
+        ) : (
+          <section>
+            <ul>
+              {reviewData.results.map((review, index) => (
+                <li key={index}>
+                  <h1>{review.author}</h1>
+                  <article>{review.content}</article>
+                </li>
+              ))}
+            </ul>
+          </section>
+        )}
+      </>
+    );
   }
 
   if (status === Status.PENDING) {
