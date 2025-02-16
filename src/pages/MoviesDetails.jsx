@@ -12,9 +12,7 @@ function MoviesDetails() {
   const [status, setStatus] = useState(Status.IDLE);
   const [movieDetails, setMovieDetails] = useState([]);
   const [error, setError] = useState(null);
-
   const params = useParams();
-  console.log(params.movieId);
 
   const options = {
     method: 'GET',
@@ -57,10 +55,6 @@ function MoviesDetails() {
       });
   }, []);
 
-  console.log(
-    `https://api.themoviedb.org/3/movie/${params.movieId}/images${movieDetails.poster_path}`
-  );
-
   if (status === Status.PENDING) {
     return <p>Завантажується...</p>;
   }
@@ -99,10 +93,10 @@ function MoviesDetails() {
         <nav>
           <ul>
             <li>
-              <Link to={`/movies/${params.movieId}/cast`}>Cast</Link>
+              <Link to="cast">Cast</Link>
             </li>
             <li>
-              <Link to={`/movies/${params.movieId}/reviews`}>Reviews</Link>
+              <Link to="reviews">Reviews</Link>
             </li>
           </ul>
         </nav>
