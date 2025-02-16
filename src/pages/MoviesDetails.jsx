@@ -1,4 +1,4 @@
-import { Link, useParams } from 'react-router-dom';
+import { Link, Outlet, useParams } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 
 const Status = {
@@ -99,13 +99,14 @@ function MoviesDetails() {
         <nav>
           <ul>
             <li>
-              <Link>Cast</Link>
+              <Link to={`/movies/${params.movieId}/cast`}>Cast</Link>
             </li>
             <li>
-              <Link>Rewiew</Link>
+              <Link to={`/movies/${params.movieId}/reviews`}>Reviews</Link>
             </li>
           </ul>
         </nav>
+        <Outlet />
       </main>
     );
   }
