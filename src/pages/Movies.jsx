@@ -1,7 +1,8 @@
-import { useSearchParams } from 'react-router-dom';
-import { useEffect } from 'react';
+import { useState } from 'react';
+import { useSearchParams, Link } from 'react-router-dom';
 
 function Movies(params) {
+  const [movies, setMovies] = useState({ results: [] });
   const [searchParams, setSearchParams] = useSearchParams('');
   const queryValue = searchParams.get('query');
   console.log(queryValue);
@@ -30,29 +31,43 @@ function Movies(params) {
   }
 
   return (
-    <form
-      onSubmit={e => {
-        e.preventDefault();
-        console.log(searchParams.get('query'));
-        setSearchParams({ query: '' });
-        fetchSearchMovie()
-          .then(movie => console.log(movie))
-          .catch(error => console.log(error));
-      }}
-    >
-      <label htmlFor="query">
-        <input
-          value={searchParams.get('query')}
-          onChange={e => {
-            setSearchParams({ query: e.target.value });
-          }}
-          type="text"
-          name="query"
-          id="query"
-        />
-      </label>
-      <button type="submit">Search</button>
-    </form>
+    <>
+      <form
+        onSubmit={e => {
+          e.preventDefault();
+          console.log(searchParams.get('query'));
+          setSearchParams({ query: '' });
+          fetchSearchMovie()
+            .then(movie => {
+              console.log(movie);
+              setMovies(movie);
+            })
+            .catch(error => console.log(error));
+        }}
+      >
+        <label htmlFor="query">
+          <input
+            value={searchParams.get('query')}
+            onChange={e => {
+              setSearchParams({ query: e.target.value });
+            }}
+            type="text"
+            name="query"
+            id="query"
+          />
+        </label>
+        <button type="submit">Search</button>
+      </form>
+      <main>
+        <ul>
+          {movies.results.map(movie => (
+            <li key={movie.id}>
+              <Link>{movie.title}</Link>
+            </li>
+          ))}
+        </ul>
+      </main>
+    </>
   );
 }
 
