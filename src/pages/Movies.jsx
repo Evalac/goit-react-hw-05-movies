@@ -1,11 +1,13 @@
 import { useState } from 'react';
-import { useSearchParams, Link } from 'react-router-dom';
+import { useSearchParams, Link, useLocation } from 'react-router-dom';
 
-function Movies(params) {
+function Movies() {
   const [movies, setMovies] = useState({ results: [] });
   const [searchParams, setSearchParams] = useSearchParams('');
-  const queryValue = searchParams.get('query');
-  console.log(queryValue);
+  const queryValue = searchParams.get('query') ?? '';
+
+  const loacation = useLocation();
+  console.log(loacation.state);
 
   const options = {
     method: 'GET',
@@ -36,7 +38,6 @@ function Movies(params) {
         onSubmit={e => {
           e.preventDefault();
           console.log(searchParams.get('query'));
-          setSearchParams({ query: '' });
           fetchSearchMovie()
             .then(movie => {
               console.log(movie);
@@ -62,7 +63,9 @@ function Movies(params) {
         <ul>
           {movies.results.map(movie => (
             <li key={movie.id}>
-              <Link to={`${movie.id}`}>{movie.title}</Link>
+              <Link to={`${movie.id}`} state={{ from: loacation }}>
+                {movie.title}
+              </Link>
             </li>
           ))}
         </ul>

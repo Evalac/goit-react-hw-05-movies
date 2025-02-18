@@ -1,5 +1,5 @@
-import { Link, Outlet, useParams } from 'react-router-dom';
-import { useEffect, useState } from 'react';
+import { Link, Outlet, useLocation, useParams } from 'react-router-dom';
+import { useEffect, useRef, useState } from 'react';
 
 const Status = {
   IDLE: 'idle', //в режимі очікування
@@ -13,6 +13,8 @@ function MoviesDetails() {
   const [movieDetails, setMovieDetails] = useState([]);
   const [error, setError] = useState(null);
   const params = useParams();
+  const location = useLocation();
+  const backLinkLocationRef = useRef(location.state?.from ?? '/');
 
   const options = {
     method: 'GET',
@@ -62,47 +64,50 @@ function MoviesDetails() {
 
   if (status === Status.RESOLVED) {
     return (
-      <main>
-        <section>
-          <div>
-            <img
-              src={`https://image.tmdb.org/t/p/w500${movieDetails.poster_path}`}
-              alt="poster"
-            />
-          </div>
+      <>
+        <Link to={backLinkLocationRef.current}>Back to movie list</Link>
+        <main>
+          <section>
+            <div>
+              <img
+                src={`https://image.tmdb.org/t/p/w500${movieDetails.poster_path}`}
+                alt="poster"
+              />
+            </div>
 
-          <ul>
-            <li>
-              <p>{movieDetails.title}</p>
-            </li>
-            <li>
-              <p>User score/popularit: {movieDetails.popularity}</p>
-            </li>
-            <li>
-              <p>Overview</p>
-              <p>{movieDetails.overview}</p>
-            </li>
-            <li>
-              Geners:
-              {movieDetails.genres.map(genres => (
-                <p key={genres.id}>{genres.name}</p>
-              ))}
-            </li>
-          </ul>
-        </section>
-        <p>Additional information</p>
-        <nav>
-          <ul>
-            <li>
-              <Link to="cast">Cast</Link>
-            </li>
-            <li>
-              <Link to="reviews">Reviews</Link>
-            </li>
-          </ul>
-        </nav>
-        <Outlet />
-      </main>
+            <ul>
+              <li>
+                <p>{movieDetails.title}</p>
+              </li>
+              <li>
+                <p>User score/popularit: {movieDetails.popularity}</p>
+              </li>
+              <li>
+                <p>Overview</p>
+                <p>{movieDetails.overview}</p>
+              </li>
+              <li>
+                Geners:
+                {movieDetails.genres.map(genres => (
+                  <p key={genres.id}>{genres.name}</p>
+                ))}
+              </li>
+            </ul>
+          </section>
+          <p>Additional information</p>
+          <nav>
+            <ul>
+              <li>
+                <Link to="cast">Cast</Link>
+              </li>
+              <li>
+                <Link to="reviews">Reviews</Link>
+              </li>
+            </ul>
+          </nav>
+          <Outlet />
+        </main>
+      </>
     );
   }
 
