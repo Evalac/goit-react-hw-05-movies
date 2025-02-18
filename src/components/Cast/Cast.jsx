@@ -53,6 +53,7 @@ function Cast() {
         setError(error);
         setStatus(Status.REJECTED);
       });
+    // eslint-disable-next-line
   }, []);
 
   if (status === Status.RESOLVED) {
