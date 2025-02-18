@@ -62,7 +62,7 @@ function Movies(params) {
         <ul>
           {movies.results.map(movie => (
             <li key={movie.id}>
-              <Link>{movie.title}</Link>
+              <Link to={`${movie.id}`}>{movie.title}</Link>
             </li>
           ))}
         </ul>
