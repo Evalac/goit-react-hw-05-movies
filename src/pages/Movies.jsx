@@ -1,5 +1,10 @@
 import { useState } from 'react';
-import { useSearchParams, Link, useLocation } from 'react-router-dom';
+import { useSearchParams, useLocation } from 'react-router-dom';
+
+import { options, BASE_URL } from 'services/OptionsAPI';
+
+import SearchMovieForm from 'components/MovieSearch/SearchMovieForm/SearchMovieForm';
+import SearchMovieList from 'components/MovieSearch/SearchMovieList/SearchMovieList';
 
 function Movies() {
   const [movies, setMovies] = useState({ results: [] });
@@ -7,25 +12,15 @@ function Movies() {
   const queryValue = searchParams.get('query') ?? '';
 
   const loacation = useLocation();
-  console.log(loacation.state);
-
-  const options = {
-    method: 'GET',
-    headers: {
-      accept: 'application/json',
-      Authorization:
-        'Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiJkOWNhMTczNzkwZWQ5NzdkZGM3ZDgzYTA0NmQ3ZTIwMiIsIm5iZiI6MTczOTEyMTk4OS44NTIsInN1YiI6IjY3YThlNTQ1MDhkZmY5MDMxOGYxMTkwZCIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.K59AU-jgWUYBFO064D_SN_0Dl_uXHhDAAsm48CRTA0c',
-    },
-  };
 
   async function fetchSearchMovie() {
     try {
       console.log(`Виконується фетч пошуку фільму`);
       const responce = await fetch(
-        `https://api.themoviedb.org/3/search/movie?query=${queryValue}`,
+        `${BASE_URL}/search/movie?query=${queryValue}`,
         options
       );
-      const data = responce.json();
+      const data = await responce.json();
       return data;
     } catch (error) {
       throw new Error('Упс щось пішло не так');
@@ -34,42 +29,13 @@ function Movies() {
 
   return (
     <>
-      <form
-        onSubmit={e => {
-          e.preventDefault();
-          console.log(searchParams.get('query'));
-          fetchSearchMovie()
-            .then(movie => {
-              console.log(movie);
-              setMovies(movie);
-            })
-            .catch(error => console.log(error));
-        }}
-      >
-        <label htmlFor="query">
-          <input
-            value={searchParams.get('query')}
-            onChange={e => {
-              setSearchParams({ query: e.target.value });
-            }}
-            type="text"
-            name="query"
-            id="query"
-          />
-        </label>
-        <button type="submit">Search</button>
-      </form>
-      <main>
-        <ul>
-          {movies.results.map(movie => (
-            <li key={movie.id}>
-              <Link to={`${movie.id}`} state={{ from: loacation }}>
-                {movie.title}
-              </Link>
-            </li>
-          ))}
-        </ul>
-      </main>
+      <SearchMovieForm
+        searchParams={searchParams}
+        fetchSearchMovie={fetchSearchMovie}
+        setMovies={setMovies}
+        setSearchParams={setSearchParams}
+      />
+      <SearchMovieList loacation={loacation} movies={movies} />
     </>
   );
 }

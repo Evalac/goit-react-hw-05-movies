@@ -1,12 +1,7 @@
 import { lazy } from 'react';
 import { Route, Routes, NavLink } from 'react-router-dom';
 
-// import Home from 'pages/Home';
-// import MoviesDetails from 'pages/MoviesDetails';
-// import Movies from 'pages/Movies';
-
-// import Cast from './Cast/Cast';
-// import Review from './Review/Review';
+import css from './App.module.css';
 
 const Home = lazy(() => import('../pages/Home'));
 const MoviesDetails = lazy(() => import('../pages/MoviesDetails'));
@@ -16,12 +11,16 @@ const Review = lazy(() => import('./Review/Review'));
 
 export const App = () => {
   return (
-    <div>
-      <nav>
-        <NavLink to="/">Home</NavLink>
-        <br />
-        <NavLink to="/movies">Movies</NavLink>
+    <div className="container">
+      <nav className="navbar navbar-expand-lg bg-body-tertiary">
+        <NavLink to="/" className="navbar-brand">
+          Home
+        </NavLink>
+        <NavLink to="/movies" className="navbar-brand">
+          Movies
+        </NavLink>
       </nav>
+
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="movies" element={<Movies />} />

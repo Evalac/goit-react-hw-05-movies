@@ -1,5 +1,9 @@
 import { useState, useEffect } from 'react';
+import { options, BASE_URL } from 'services/OptionsAPI';
+
 import MovieList from 'components/MovieList/MovieList';
+import Loader from 'components/Loader/Loader';
+import ResponseError from 'components/Errors/ResponseError';
 
 const Status = {
   IDLE: 'idle', //в режимі очікування
@@ -13,21 +17,12 @@ function Home() {
   const [status, setStatus] = useState(Status.IDLE);
   const [error, setError] = useState(null);
 
-  const options = {
-    method: 'GET',
-    headers: {
-      accept: 'application/json',
-      Authorization:
-        'Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiJkOWNhMTczNzkwZWQ5NzdkZGM3ZDgzYTA0NmQ3ZTIwMiIsIm5iZiI6MTczOTEyMTk4OS44NTIsInN1YiI6IjY3YThlNTQ1MDhkZmY5MDMxOGYxMTkwZCIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.K59AU-jgWUYBFO064D_SN_0Dl_uXHhDAAsm48CRTA0c',
-    },
-  };
-
   async function fetchMovies() {
     try {
       console.log('виконується фетч на сторінці HOME');
 
       const responce = await fetch(
-        'https://api.themoviedb.org/3/trending/movie/day?language=en-US',
+        `${BASE_URL}/trending/movie/day?language=en-US`,
         options
       );
       const data = await responce.json();
@@ -52,14 +47,14 @@ function Home() {
   }, []);
 
   if (status === Status.PENDING) {
-    return <p>Завантажуєм фільми...</p>;
+    return <Loader />;
   }
   if (status === Status.RESOLVED) {
     return <MovieList movieList={movieList} />;
   }
 
   if (status === Status.REJECTED) {
-    return <p>{error.message}</p>;
+    return <ResponseError error={error} />;
   }
 }
 

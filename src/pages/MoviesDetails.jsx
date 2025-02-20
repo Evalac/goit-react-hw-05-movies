@@ -1,5 +1,10 @@
 import { Link, Outlet, useLocation, useParams } from 'react-router-dom';
 import { useEffect, useRef, useState } from 'react';
+import { options, BASE_URL } from 'services/OptionsAPI';
+
+import Loader from 'components/Loader/Loader';
+import ResponseError from 'components/Errors/ResponseError';
+import MovieDeatilsCard from 'components/MovieDetailsCard/MovieDetailsCard';
 
 const Status = {
   IDLE: 'idle', //в режимі очікування
@@ -16,15 +21,6 @@ function MoviesDetails() {
   const location = useLocation();
   const backLinkLocationRef = useRef(location.state?.from ?? '/');
 
-  const options = {
-    method: 'GET',
-    headers: {
-      accept: 'application/json',
-      Authorization:
-        'Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiJkOWNhMTczNzkwZWQ5NzdkZGM3ZDgzYTA0NmQ3ZTIwMiIsIm5iZiI6MTczOTEyMTk4OS44NTIsInN1YiI6IjY3YThlNTQ1MDhkZmY5MDMxOGYxMTkwZCIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.K59AU-jgWUYBFO064D_SN_0Dl_uXHhDAAsm48CRTA0c',
-    },
-  };
-
   async function fetchMovieDetails() {
     if (params.movieId === '') {
       return;
@@ -33,7 +29,7 @@ function MoviesDetails() {
       console.log(`Виконується фетч в компоненті movieDetails`);
 
       const responce = await fetch(
-        `https://api.themoviedb.org/3/movie/${params.movieId}?language=en-US`,
+        `${BASE_URL}/movie/${params.movieId}?language=en-US`,
         options
       );
       const movieInfo = await responce.json();
@@ -59,60 +55,33 @@ function MoviesDetails() {
   }, []);
 
   if (status === Status.PENDING) {
-    return <p>Завантажується...</p>;
+    return <Loader />;
   }
 
   if (status === Status.RESOLVED) {
     return (
       <>
         <Link to={backLinkLocationRef.current}>Back to movie list</Link>
-        <main>
-          <section>
-            <div>
-              <img
-                src={`https://image.tmdb.org/t/p/w500${movieDetails.poster_path}`}
-                alt="poster"
-              />
-            </div>
 
-            <ul>
-              <li>
-                <p>{movieDetails.title}</p>
-              </li>
-              <li>
-                <p>User score/popularit: {movieDetails.popularity}</p>
-              </li>
-              <li>
-                <p>Overview</p>
-                <p>{movieDetails.overview}</p>
-              </li>
-              <li>
-                Geners:
-                {movieDetails.genres.map(genres => (
-                  <p key={genres.id}>{genres.name}</p>
-                ))}
-              </li>
-            </ul>
-          </section>
-          <p>Additional information</p>
-          <nav>
-            <ul>
-              <li>
-                <Link to="cast">Cast</Link>
-              </li>
-              <li>
-                <Link to="reviews">Reviews</Link>
-              </li>
-            </ul>
-          </nav>
-          <Outlet />
-        </main>
+        <MovieDeatilsCard movieDetails={movieDetails} />
+        <p>Additional information</p>
+        <nav>
+          <ul>
+            <li>
+              <Link to="cast">Cast</Link>
+            </li>
+            <li>
+              <Link to="reviews">Reviews</Link>
+            </li>
+          </ul>
+        </nav>
+        <Outlet />
       </>
     );
   }
 
   if (status === Status.REJECTED) {
-    return <p>{error.message}</p>;
+    return <ResponseError error={error} />;
   }
 }
 
