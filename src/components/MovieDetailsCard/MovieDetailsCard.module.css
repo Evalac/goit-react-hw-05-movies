@@ -1,0 +1,14 @@
+.movie_deatils_card {
+  display: flex;
+  border: solid 2px black;
+  border-radius: 5px;
+  margin-bottom: 20px;
+}
+
+.card_content_items {
+  margin: 15px;
+}
+
+.img_poster {
+  max-width: 400px;
+}

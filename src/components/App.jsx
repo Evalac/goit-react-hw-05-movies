@@ -11,7 +11,7 @@ const Review = lazy(() => import('./Review/Review'));
 
 export const App = () => {
   return (
-    <div className="container">
+    <div className="container-sm">
       <nav className="navbar navbar-expand-lg bg-body-tertiary">
         <NavLink to="/" className="navbar-brand">
           Home

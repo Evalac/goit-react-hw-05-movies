@@ -1,6 +1,10 @@
 import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 
+import CastCard from './CastCard/CastCard';
+import Loader from 'components/Loader/Loader';
+import ResponseError from 'components/Errors/ResponseError';
+
 const Status = {
   IDLE: 'idle', //в режимі очікування
   PENDING: 'pending', //очікується виконання
@@ -57,28 +61,15 @@ function Cast() {
   }, []);
 
   if (status === Status.RESOLVED) {
-    return (
-      <ul>
-        {casts.cast.map((cast, index) => (
-          <li key={cast.id}>
-            <img
-              src={`https://image.tmdb.org/t/p/w200${cast.profile_path}`}
-              alt="pic"
-            />
-            <p>{cast.name}</p>
-            <p>Character: {cast.character}</p>
-          </li>
-        ))}
-      </ul>
-    );
+    return <CastCard casts={casts} />;
   }
 
   if (status === Status.PENDING) {
-    return <p>Завантажується...</p>;
+    return <Loader />;
   }
 
   if (status === Status.RESOLVED) {
-    return <p>{error.message}</p>;
+    return <ResponseError error={error} />;
   }
 }
 

@@ -62,19 +62,7 @@ function MoviesDetails() {
     return (
       <>
         <Link to={backLinkLocationRef.current}>Back to movie list</Link>
-
         <MovieDeatilsCard movieDetails={movieDetails} />
-        <p>Additional information</p>
-        <nav>
-          <ul>
-            <li>
-              <Link to="cast">Cast</Link>
-            </li>
-            <li>
-              <Link to="reviews">Reviews</Link>
-            </li>
-          </ul>
-        </nav>
         <Outlet />
       </>
     );
