@@ -1,7 +1,7 @@
 import { lazy } from 'react';
 import { Route, Routes, NavLink } from 'react-router-dom';
 
-import css from './App.module.css';
+// import css from './App.module.css';
 
 const Home = lazy(() => import('../pages/Home'));
 const MoviesDetails = lazy(() => import('../pages/MoviesDetails'));

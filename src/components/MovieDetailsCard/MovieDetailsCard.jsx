@@ -15,30 +15,29 @@ function MovieDeatilsCard({ movieDetails }) {
         </div>
 
         <div className={css.card_content_items}>
-          <ul>
-            <li>
-              <h2>{movieDetails.title}</h2>
+          <ul className={css.card_list}>
+            <li className={css.card_list_item}>
+              <h2 className={css.title}>{movieDetails.title}</h2>
               <p>{movieDetails.overview}</p>
             </li>
             <li>
               <p> User score/popularit: {movieDetails.popularity}</p>
             </li>
           </ul>
-          <ul>
-            <li className="">
-              Geners:
-              {movieDetails.genres.map(genres => (
-                <p key={genres.id}>{genres.name}</p>
-              ))}
+
+          <ul className={css.card_geners_list}>
+            <li className={css.card_geners_list_item}>
+              <strong>Genres:</strong>
+              <p>{movieDetails.genres.map(genre => genre.name).join(', ')}.</p>
             </li>
           </ul>
 
-          <div className="">
+          <div className={css.additional_info_block}>
             <p>Additional information:</p>
-            <Link to="cast" className="card-link">
+            <Link to="cast" className={css.card_link}>
               Cast
             </Link>
-            <Link to="reviews" className="card-link">
+            <Link to="reviews" className={css.card_link}>
               Reviews
             </Link>
           </div>
