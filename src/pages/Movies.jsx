@@ -10,6 +10,7 @@ function Movies() {
   const [movies, setMovies] = useState({ results: [] });
   const [searchParams, setSearchParams] = useSearchParams('');
   const queryValue = searchParams.get('query') ?? '';
+  console.log(queryValue);
 
   const loacation = useLocation();
 

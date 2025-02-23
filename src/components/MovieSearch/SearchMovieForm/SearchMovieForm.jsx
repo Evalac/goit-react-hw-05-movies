@@ -19,7 +19,7 @@ function SearchMovieForm({
       <form onSubmit={submitForm}>
         <label htmlFor="query">
           <input
-            value={searchParams.get('query')}
+            value={searchParams.get('query') ?? ''}
             onChange={e => {
               setSearchParams({ query: e.target.value });
             }}
