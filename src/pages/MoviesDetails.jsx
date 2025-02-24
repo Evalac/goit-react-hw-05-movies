@@ -1,4 +1,6 @@
-import { Link, Outlet, useLocation, useParams } from 'react-router-dom';
+import css from './Pages.module.css';
+
+import { NavLink, Outlet, useLocation, useParams } from 'react-router-dom';
 import { useEffect, useRef, useState } from 'react';
 import { options, BASE_URL } from 'services/OptionsAPI';
 
@@ -61,7 +63,9 @@ function MoviesDetails() {
   if (status === Status.RESOLVED) {
     return (
       <>
-        <Link to={backLinkLocationRef.current}>Back to movie list</Link>
+        <NavLink className={css.backLink} to={backLinkLocationRef.current}>
+          Back to movie list
+        </NavLink>
         <MovieDeatilsCard movieDetails={movieDetails} />
         <Outlet />
       </>
