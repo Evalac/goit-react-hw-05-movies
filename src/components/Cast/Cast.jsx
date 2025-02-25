@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
+import { BASE_URL, options } from 'services/OptionsAPI';
 
 import CastCard from './CastCard/CastCard';
 import Loader from 'components/Loader/Loader';
@@ -18,15 +19,6 @@ function Cast() {
   const [error, setError] = useState(null);
   const params = useParams();
 
-  const options = {
-    method: 'GET',
-    headers: {
-      accept: 'application/json',
-      Authorization:
-        'Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiJkOWNhMTczNzkwZWQ5NzdkZGM3ZDgzYTA0NmQ3ZTIwMiIsIm5iZiI6MTczOTEyMTk4OS44NTIsInN1YiI6IjY3YThlNTQ1MDhkZmY5MDMxOGYxMTkwZCIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.K59AU-jgWUYBFO064D_SN_0Dl_uXHhDAAsm48CRTA0c',
-    },
-  };
-
   async function fetchCredits() {
     if (params.movieId === '') {
       return;
@@ -36,13 +28,16 @@ function Cast() {
       console.log(`Виконується фетч в компоненті Cast`);
 
       const responce = await fetch(
-        `https://api.themoviedb.org/3/movie/${params.movieId}/credits`,
+        `${BASE_URL}/movie/${params.movieId}/credits`,
         options
       );
+      if (!responce.ok) {
+        throw new Error(`HTTP error! Status: ${responce.status}`);
+      }
       const castsData = await responce.json();
       return castsData;
     } catch (error) {
-      throw new Error('Упс щось пішло не так');
+      throw new Error('Вибаче щось пішло не так');
     }
   }
 
@@ -68,7 +63,7 @@ function Cast() {
     return <Loader />;
   }
 
-  if (status === Status.RESOLVED) {
+  if (status === Status.REJECTED) {
     return <ResponseError error={error} />;
   }
 }

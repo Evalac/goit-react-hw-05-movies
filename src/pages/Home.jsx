@@ -22,9 +22,12 @@ function Home() {
       console.log('виконується фетч на сторінці HOME');
 
       const responce = await fetch(
-        `${BASE_URL}/trending/movie/day?language=en-US`,
+        `${BASE_URL}/trending/movie/week?language=en-US`,
         options
       );
+      if (!responce.ok) {
+        throw new Error(`HTTP error! Status: ${responce.status}`);
+      }
       const data = await responce.json();
       return data;
     } catch (error) {
@@ -49,12 +52,11 @@ function Home() {
   if (status === Status.PENDING) {
     return <Loader />;
   }
-  if (status === Status.RESOLVED) {
-    return <MovieList movieList={movieList} />;
-  }
-
   if (status === Status.REJECTED) {
     return <ResponseError error={error} />;
+  }
+  if (status === Status.RESOLVED) {
+    return <MovieList movieList={movieList} />;
   }
 }
 

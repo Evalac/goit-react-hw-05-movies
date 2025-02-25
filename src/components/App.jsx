@@ -1,7 +1,7 @@
 import { lazy } from 'react';
 import { Route, Routes, NavLink } from 'react-router-dom';
 
-// import css from './App.module.css';
+import css from './App.module.css';
 
 const Home = lazy(() => import('../pages/Home'));
 const MoviesDetails = lazy(() => import('../pages/MoviesDetails'));
@@ -12,12 +12,12 @@ const Review = lazy(() => import('./Review/Review'));
 export const App = () => {
   return (
     <div className="container-sm">
-      <nav className="navbar navbar-expand-lg bg-body-tertiary">
-        <NavLink to="/" className="navbar-brand">
-          Home
+      <nav className={css.header}>
+        <NavLink to="/" className={css.navLink}>
+          Trending movies on the week
         </NavLink>
-        <NavLink to="/movies" className="navbar-brand">
-          Movies
+        <NavLink to="/movies" className={css.navLink}>
+          Search movie
         </NavLink>
       </nav>
 
