@@ -1,8 +1,31 @@
 import { Link } from 'react-router-dom';
 
 import css from './MovieDetailsCard.module.css';
+import { useState, useEffect } from 'react';
 
 function MovieDeatilsCard({ movieDetails }) {
+  let moviesArr = [];
+  const [watchlist, setWatchlist] = useState(
+    JSON.parse(localStorage.getItem('watchlist')) ?? []
+  );
+  const findMovie = watchlist.some(movie => movie.id === movieDetails.id);
+
+  const setWatchList = () => {
+    if (findMovie) {
+      alert('Такий фільм вже є в списку');
+      return;
+    }
+
+    moviesArr.push(movieDetails);
+    setWatchlist(prevState => [...prevState, ...moviesArr]);
+  };
+
+  useEffect(() => {
+    // Зберігаємо watchlist у localStorage при кожній зміні
+
+    localStorage.setItem('watchlist', JSON.stringify(watchlist));
+  }, [watchlist]);
+
   return (
     <>
       <section className={css.movie_deatils_card}>
@@ -46,6 +69,9 @@ function MovieDeatilsCard({ movieDetails }) {
             <Link to="reviews" className={css.card_link}>
               Reviews
             </Link>
+            <button onClick={setWatchList} disabled={findMovie}>
+              Add to watchlist
+            </button>
           </div>
         </div>
       </section>
