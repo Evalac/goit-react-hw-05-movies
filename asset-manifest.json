@@ -1,13 +1,15 @@
 {
   "files": {
     "main.css": "/goit-react-hw-05-movies/static/css/main.ebfbe6ae.css",
-    "main.js": "/goit-react-hw-05-movies/static/js/main.c3123ae5.js",
-    "static/css/529.26b13645.chunk.css": "/goit-react-hw-05-movies/static/css/529.26b13645.chunk.css",
-    "static/js/529.69889c2f.chunk.js": "/goit-react-hw-05-movies/static/js/529.69889c2f.chunk.js",
+    "main.js": "/goit-react-hw-05-movies/static/js/main.9c41ff93.js",
+    "static/css/415.c4b435d0.chunk.css": "/goit-react-hw-05-movies/static/css/415.c4b435d0.chunk.css",
+    "static/js/415.ad572e1f.chunk.js": "/goit-react-hw-05-movies/static/js/415.ad572e1f.chunk.js",
     "static/css/345.ab9aa7de.chunk.css": "/goit-react-hw-05-movies/static/css/345.ab9aa7de.chunk.css",
-    "static/js/345.5d253cce.chunk.js": "/goit-react-hw-05-movies/static/js/345.5d253cce.chunk.js",
-    "static/css/108.6e78fd0a.chunk.css": "/goit-react-hw-05-movies/static/css/108.6e78fd0a.chunk.css",
-    "static/js/108.65740f58.chunk.js": "/goit-react-hw-05-movies/static/js/108.65740f58.chunk.js",
+    "static/js/345.08aca669.chunk.js": "/goit-react-hw-05-movies/static/js/345.08aca669.chunk.js",
+    "static/css/108.60405cf5.chunk.css": "/goit-react-hw-05-movies/static/css/108.60405cf5.chunk.css",
+    "static/js/108.ab8a27fc.chunk.js": "/goit-react-hw-05-movies/static/js/108.ab8a27fc.chunk.js",
+    "static/css/192.c4b435d0.chunk.css": "/goit-react-hw-05-movies/static/css/192.c4b435d0.chunk.css",
+    "static/js/192.9b84b64a.chunk.js": "/goit-react-hw-05-movies/static/js/192.9b84b64a.chunk.js",
     "static/css/646.e09b25d3.chunk.css": "/goit-react-hw-05-movies/static/css/646.e09b25d3.chunk.css",
     "static/js/646.810480f2.chunk.js": "/goit-react-hw-05-movies/static/js/646.810480f2.chunk.js",
     "static/css/978.e968589d.chunk.css": "/goit-react-hw-05-movies/static/css/978.e968589d.chunk.css",
@@ -16,13 +18,15 @@
     "static/media/depositphotos_134263580-stock-photo-man-holding-card-with-question.jpg": "/goit-react-hw-05-movies/static/media/depositphotos_134263580-stock-photo-man-holding-card-with-question.f63350cfe39a675c3fe4.jpg",
     "index.html": "/goit-react-hw-05-movies/index.html",
     "main.ebfbe6ae.css.map": "/goit-react-hw-05-movies/static/css/main.ebfbe6ae.css.map",
-    "main.c3123ae5.js.map": "/goit-react-hw-05-movies/static/js/main.c3123ae5.js.map",
-    "529.26b13645.chunk.css.map": "/goit-react-hw-05-movies/static/css/529.26b13645.chunk.css.map",
-    "529.69889c2f.chunk.js.map": "/goit-react-hw-05-movies/static/js/529.69889c2f.chunk.js.map",
+    "main.9c41ff93.js.map": "/goit-react-hw-05-movies/static/js/main.9c41ff93.js.map",
+    "415.c4b435d0.chunk.css.map": "/goit-react-hw-05-movies/static/css/415.c4b435d0.chunk.css.map",
+    "415.ad572e1f.chunk.js.map": "/goit-react-hw-05-movies/static/js/415.ad572e1f.chunk.js.map",
     "345.ab9aa7de.chunk.css.map": "/goit-react-hw-05-movies/static/css/345.ab9aa7de.chunk.css.map",
-    "345.5d253cce.chunk.js.map": "/goit-react-hw-05-movies/static/js/345.5d253cce.chunk.js.map",
-    "108.6e78fd0a.chunk.css.map": "/goit-react-hw-05-movies/static/css/108.6e78fd0a.chunk.css.map",
-    "108.65740f58.chunk.js.map": "/goit-react-hw-05-movies/static/js/108.65740f58.chunk.js.map",
+    "345.08aca669.chunk.js.map": "/goit-react-hw-05-movies/static/js/345.08aca669.chunk.js.map",
+    "108.60405cf5.chunk.css.map": "/goit-react-hw-05-movies/static/css/108.60405cf5.chunk.css.map",
+    "108.ab8a27fc.chunk.js.map": "/goit-react-hw-05-movies/static/js/108.ab8a27fc.chunk.js.map",
+    "192.c4b435d0.chunk.css.map": "/goit-react-hw-05-movies/static/css/192.c4b435d0.chunk.css.map",
+    "192.9b84b64a.chunk.js.map": "/goit-react-hw-05-movies/static/js/192.9b84b64a.chunk.js.map",
     "646.e09b25d3.chunk.css.map": "/goit-react-hw-05-movies/static/css/646.e09b25d3.chunk.css.map",
     "646.810480f2.chunk.js.map": "/goit-react-hw-05-movies/static/js/646.810480f2.chunk.js.map",
     "978.e968589d.chunk.css.map": "/goit-react-hw-05-movies/static/css/978.e968589d.chunk.css.map",
@@ -31,6 +35,6 @@
   },
   "entrypoints": [
     "static/css/main.ebfbe6ae.css",
-    "static/js/main.c3123ae5.js"
+    "static/js/main.9c41ff93.js"
   ]
 }
