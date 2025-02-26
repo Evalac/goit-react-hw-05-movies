@@ -1,11 +1,8 @@
-import { Link, useLocation } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
 import css from './MovieDetailsCard.module.css';
 
 function MovieDeatilsCard({ movieDetails }) {
-  const location = useLocation();
-  console.log(location);
-
   return (
     <>
       <section className={css.movie_deatils_card}>

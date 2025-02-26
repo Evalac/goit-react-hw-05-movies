@@ -11,7 +11,6 @@ function SearchMovieForm({
     if (searchParams.get('query') === '') {
       alert('Please enter movie name');
     }
-    console.log(searchParams.get('query'));
     fetchSearchMovie()
       .then(movie => {
         setMovies(movie);

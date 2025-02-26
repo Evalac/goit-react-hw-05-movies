@@ -1,13 +1,15 @@
-import { Link } from 'react-router-dom';
-
 import noImage from '../../../img/depositphotos_134263580-stock-photo-man-holding-card-with-question.jpg';
-import css from './MoveList.module.css';
+import css from './PopularMoviesList.module.css';
 
-function SearchMovieList({ location, movies }) {
+import { Link, useLocation, useParams } from 'react-router-dom';
+
+function PopularMoviesList({ movieList }) {
+  const location = useLocation();
+
   return (
     <main>
       <ul className={css.movies_list}>
-        {movies.results.map(movie => (
+        {movieList.map(movie => (
           <li key={movie.id} className={css.movies_list_item}>
             <Link
               className={css.movie_list_item_link}
@@ -34,4 +36,4 @@ function SearchMovieList({ location, movies }) {
   );
 }
 
-export default SearchMovieList;
+export default PopularMoviesList;

@@ -4,7 +4,8 @@ import { options, BASE_URL } from 'services/OptionsAPI';
 
 import Loader from 'components/Loader/Loader';
 import ResponseError from 'components/Errors/ResponseError';
-import MovieList from 'components/MovieList/MovieList';
+import PopularMoviesList from 'components/PopularMovies/PopularMoviesList/PopularMoviesList';
+import { useParams } from 'react-router-dom';
 
 const Status = {
   IDLE: 'idle',
@@ -37,7 +38,7 @@ function Popular(params) {
   useEffect(() => {
     fetchPopularMovies()
       .then(data => {
-        setPopularMovie(data);
+        setPopularMovie(data.results);
         setStatus(Status.RESOLVED);
       })
       .catch(error => {
@@ -50,7 +51,7 @@ function Popular(params) {
     return <Loader />;
   }
   if (status === Status.RESOLVED) {
-    return <MovieList movieList={popularMovie.results} />;
+    return <PopularMoviesList movieList={popularMovie} />;
   }
   if (status === Status.REJECTED) {
     return <ResponseError error={error} />;

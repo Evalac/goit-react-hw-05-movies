@@ -47,7 +47,6 @@ function MoviesDetails() {
       .then(movieInfo => {
         setMovieDetails(movieInfo);
         setStatus(Status.RESOLVED);
-        console.log(movieDetails);
       })
       .catch(error => {
         setError(error);
