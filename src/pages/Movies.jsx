@@ -5,12 +5,12 @@ import { options, BASE_URL } from 'services/OptionsAPI';
 
 import SearchMovieForm from 'components/MovieSearch/SearchMovieForm/SearchMovieForm';
 import SearchMovieList from 'components/MovieSearch/SearchMovieList/SearchMovieList';
+import MovieList from 'components/MovieList/MovieList';
 
 function Movies() {
   const [movies, setMovies] = useState({ results: [] });
   const [searchParams, setSearchParams] = useSearchParams('');
   const queryValue = searchParams.get('query') ?? '';
-  console.log(queryValue);
 
   const loacation = useLocation();
 
@@ -37,6 +37,7 @@ function Movies() {
         setSearchParams={setSearchParams}
       />
       <SearchMovieList loacation={loacation} movies={movies} />
+      <MovieList path={loacation} movieList={movies.results} />
     </>
   );
 }

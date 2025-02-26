@@ -8,6 +8,9 @@ function SearchMovieForm({
 }) {
   const submitForm = e => {
     e.preventDefault();
+    if (searchParams.get('query') === '') {
+      alert('Please enter movie name');
+    }
     console.log(searchParams.get('query'));
     fetchSearchMovie()
       .then(movie => {

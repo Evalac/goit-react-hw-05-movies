@@ -6,6 +6,8 @@ import css from './App.module.css';
 const Home = lazy(() => import('../pages/Home'));
 const MoviesDetails = lazy(() => import('../pages/MoviesDetails'));
 const Movies = lazy(() => import('../pages/Movies'));
+const Popular = lazy(() => import('../pages/Popular'));
+
 const Cast = lazy(() => import('../components/Cast/Cast'));
 const Review = lazy(() => import('./Review/Review'));
 
@@ -19,7 +21,7 @@ export const App = () => {
         <NavLink to="/movies" className={css.navLink}>
           Search movie
         </NavLink>
-        <NavLink to="" className={css.navLink}>
+        <NavLink to="/popular" className={css.navLink}>
           Popular
         </NavLink>
         <NavLink to="" className={css.navLink}>
@@ -36,6 +38,7 @@ export const App = () => {
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="movies" element={<Movies />} />
+        <Route path="popular" element={<Popular />} />
         <Route path="movies/:movieId" element={<MoviesDetails />}>
           <Route path="cast" element={<Cast />} />
           <Route path="reviews" element={<Review />} />

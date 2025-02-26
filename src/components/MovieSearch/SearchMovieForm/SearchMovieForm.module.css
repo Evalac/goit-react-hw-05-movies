@@ -1,12 +1,15 @@
 .form_query {
   margin-top: 15px;
+  margin-bottom: 15px;
   display: flex;
   align-items: center;
+  justify-content: center;
 }
 
 .search_query_input {
   border-color: rgb(9, 144, 228);
   border-radius: 5px;
+  padding: 5px 10px;
   margin-right: 10px;
 }
 

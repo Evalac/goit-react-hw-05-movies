@@ -1,8 +1,11 @@
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 
 import css from './MovieDetailsCard.module.css';
 
 function MovieDeatilsCard({ movieDetails }) {
+  const location = useLocation();
+  console.log(location);
+
   return (
     <>
       <section className={css.movie_deatils_card}>
@@ -21,14 +24,20 @@ function MovieDeatilsCard({ movieDetails }) {
               <p>{movieDetails.overview}</p>
             </li>
             <li>
-              <p> User score/popularit: {movieDetails.popularity}</p>
+              <p> Release: {movieDetails.release_date}</p>
             </li>
+            <li>
+              <p> User score: {movieDetails.vote_average}</p>
+            </li>
+            <li>Runtime: {movieDetails.runtime} min</li>
           </ul>
 
           <ul className={css.card_geners_list}>
             <li className={css.card_geners_list_item}>
-              <strong>Genres:</strong>
-              <p>{movieDetails.genres.map(genre => genre.name).join(', ')}.</p>
+              <p>
+                Genres:{' '}
+                {movieDetails.genres.map(genre => genre.name).join(', ')}.
+              </p>
             </li>
           </ul>
 
