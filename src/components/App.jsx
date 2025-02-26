@@ -19,6 +19,18 @@ export const App = () => {
         <NavLink to="/movies" className={css.navLink}>
           Search movie
         </NavLink>
+        <NavLink to="" className={css.navLink}>
+          Popular
+        </NavLink>
+        <NavLink to="" className={css.navLink}>
+          Now Playing
+        </NavLink>
+        <NavLink to="" className={css.navLink}>
+          Upcoming
+        </NavLink>
+        <NavLink to="" className={css.navLink}>
+          Watchlist
+        </NavLink>
       </nav>
 
       <Routes>
