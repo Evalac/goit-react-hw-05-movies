@@ -1,12 +1,12 @@
-import { Link } from 'react-router-dom';
-import WatchList from 'components/WatchList/WatchList';
+import WatchListItem from 'components/WatchList/WatchListItems';
+import { useLocation } from 'react-router-dom';
 
-function Watchlist(params) {
+function Watchlist() {
   const moviesIdarr = JSON.parse(localStorage.getItem('watchlist'));
+  const location = useLocation();
+  console.log(location);
 
-  console.log(moviesIdarr);
-
-  return <WatchList moviesIdarr={moviesIdarr} />;
+  return <WatchListItem moviesIdarr={moviesIdarr} />;
 }
 
 export default Watchlist;

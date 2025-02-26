@@ -5,24 +5,32 @@ import { useState, useEffect } from 'react';
 
 function MovieDeatilsCard({ movieDetails }) {
   let moviesArr = [];
+
   const [watchlist, setWatchlist] = useState(
     JSON.parse(localStorage.getItem('watchlist')) ?? []
   );
+
   const findMovie = watchlist.some(movie => movie.id === movieDetails.id);
 
-  const setWatchList = () => {
+  const addMovie = () => {
     if (findMovie) {
       alert('Такий фільм вже є в списку');
       return;
     }
-
     moviesArr.push(movieDetails);
     setWatchlist(prevState => [...prevState, ...moviesArr]);
   };
 
-  useEffect(() => {
-    // Зберігаємо watchlist у localStorage при кожній зміні
+  const removeMovie = () => {
+    console.log(`click`);
+    const updatedWatchList = watchlist.filter(
+      movie => movie.id !== movieDetails.id
+    );
+    setWatchlist(updatedWatchList);
+    localStorage.setItem('watchlist', JSON.stringify(updatedWatchList));
+  };
 
+  useEffect(() => {
     localStorage.setItem('watchlist', JSON.stringify(watchlist));
   }, [watchlist]);
 
@@ -69,8 +77,11 @@ function MovieDeatilsCard({ movieDetails }) {
             <Link to="reviews" className={css.card_link}>
               Reviews
             </Link>
-            <button onClick={setWatchList} disabled={findMovie}>
+            <button onClick={addMovie} disabled={findMovie}>
               Add to watchlist
+            </button>
+            <button onClick={removeMovie} disabled={!findMovie}>
+              Remove
             </button>
           </div>
         </div>

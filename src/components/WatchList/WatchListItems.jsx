@@ -1,7 +1,7 @@
 import { Link } from 'react-router-dom';
 import css from './WatchList.module.css';
 
-function WatchList({ moviesIdarr }) {
+function WatchListItem({ moviesIdarr }) {
   return (
     <main>
       <ul className={css.movies_list}>
@@ -11,7 +11,7 @@ function WatchList({ moviesIdarr }) {
               <img
                 className={css.movies_list_item_img}
                 src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`}
-                alt=""
+                alt="pic"
               />
               <div className={css.movie_list_item_link_container}>
                 <p className={css.movie_list_item_link_title}>{movie.title}</p>
@@ -24,4 +24,4 @@ function WatchList({ moviesIdarr }) {
   );
 }
 
-export default WatchList;
+export default WatchListItem;
