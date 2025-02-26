@@ -21,7 +21,3 @@
 .navLink:last-child {
   margin-right: 0;
 }
-
-.navLink.active {
-  color: rgb(19, 241, 52);
-}

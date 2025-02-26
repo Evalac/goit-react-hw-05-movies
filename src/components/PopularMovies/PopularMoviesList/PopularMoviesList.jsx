@@ -3,7 +3,7 @@ import css from './PopularMoviesList.module.css';
 
 import { Link, useLocation, useParams } from 'react-router-dom';
 
-function PopularMoviesList({ movieList }) {
+function PopularMoviesList({ movieList, setPage }) {
   const location = useLocation();
 
   return (
@@ -32,6 +32,14 @@ function PopularMoviesList({ movieList }) {
           </li>
         ))}
       </ul>
+      <button
+        className={css.load_more_btn}
+        onClick={() => {
+          setPage(prevState => prevState + 1);
+        }}
+      >
+        Load More
+      </button>
     </main>
   );
 }

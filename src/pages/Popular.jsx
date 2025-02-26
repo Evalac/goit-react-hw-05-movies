@@ -5,7 +5,6 @@ import { options, BASE_URL } from 'services/OptionsAPI';
 import Loader from 'components/Loader/Loader';
 import ResponseError from 'components/Errors/ResponseError';
 import PopularMoviesList from 'components/PopularMovies/PopularMoviesList/PopularMoviesList';
-import { useParams } from 'react-router-dom';
 
 const Status = {
   IDLE: 'idle',
@@ -16,13 +15,14 @@ const Status = {
 
 function Popular(params) {
   const [popularMovie, setPopularMovie] = useState([]);
+  const [page, setPage] = useState(1);
   const [error, setError] = useState(null);
   const [status, setStatus] = useState(Status.IDLE);
 
-  async function fetchPopularMovies(params) {
+  async function fetchPopularMovies() {
     try {
       const responce = await fetch(
-        `${BASE_URL}/movie/popular?language=en-US&page=2`,
+        `${BASE_URL}/movie/popular?language=en-US&page=${page}`,
         options
       );
       if (!responce.ok) {
@@ -38,6 +38,11 @@ function Popular(params) {
   useEffect(() => {
     fetchPopularMovies()
       .then(data => {
+        if (page > 1) {
+          setPopularMovie(prevState => [...prevState, ...data.results]);
+          setStatus(Status.RESOLVED);
+          return;
+        }
         setPopularMovie(data.results);
         setStatus(Status.RESOLVED);
       })
@@ -45,13 +50,13 @@ function Popular(params) {
         setError(error);
         setStatus(Status.REJECTED);
       });
-  }, []);
+  }, [page]);
 
   if (status === Status.PENDING) {
     return <Loader />;
   }
   if (status === Status.RESOLVED) {
-    return <PopularMoviesList movieList={popularMovie} />;
+    return <PopularMoviesList movieList={popularMovie} setPage={setPage} />;
   }
   if (status === Status.REJECTED) {
     return <ResponseError error={error} />;
