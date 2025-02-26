@@ -49,7 +49,7 @@ function Popular(params) {
       .catch(error => {
         setError(error);
         setStatus(Status.REJECTED);
-      });
+      }); // eslint-disable-next-line
   }, [page]);
 
   if (status === Status.PENDING) {

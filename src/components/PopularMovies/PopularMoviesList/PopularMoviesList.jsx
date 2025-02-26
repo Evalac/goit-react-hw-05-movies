@@ -1,7 +1,7 @@
 import noImage from '../../../img/depositphotos_134263580-stock-photo-man-holding-card-with-question.jpg';
 import css from './PopularMoviesList.module.css';
 
-import { Link, useLocation, useParams } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 
 function PopularMoviesList({ movieList, setPage }) {
   const location = useLocation();
