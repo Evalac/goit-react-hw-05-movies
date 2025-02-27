@@ -4,7 +4,7 @@ import { options, BASE_URL } from 'services/OptionsAPI';
 
 import Loader from 'components/Loader/Loader';
 import ResponseError from 'components/Errors/ResponseError';
-import PopularMoviesList from 'components/PopularMovies/PopularMoviesList/PopularMoviesList';
+import PopularMoviesList from 'components/PopularMovies/PopularMoviesList';
 
 const Status = {
   IDLE: 'idle',
@@ -36,6 +36,7 @@ function Popular(params) {
   }
 
   useEffect(() => {
+    setStatus(Status.PENDING);
     fetchPopularMovies()
       .then(data => {
         if (page > 1) {

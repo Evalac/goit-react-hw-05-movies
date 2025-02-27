@@ -1,4 +1,4 @@
-import noImage from '../../../img/depositphotos_134263580-stock-photo-man-holding-card-with-question.jpg';
+import noImage from '../../img/depositphotos_134263580-stock-photo-man-holding-card-with-question.jpg';
 import css from './PopularMoviesList.module.css';
 
 import { Link, useLocation } from 'react-router-dom';
