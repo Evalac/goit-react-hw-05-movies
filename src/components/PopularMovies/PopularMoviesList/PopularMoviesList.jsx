@@ -9,8 +9,8 @@ function PopularMoviesList({ movieList, setPage }) {
   return (
     <main>
       <ul className={css.movies_list}>
-        {movieList.map(movie => (
-          <li key={movie.id} className={css.movies_list_item}>
+        {movieList.map((movie, index) => (
+          <li key={index} className={css.movies_list_item}>
             <Link
               className={css.movie_list_item_link}
               to={`${movie.id}`}

@@ -14,7 +14,7 @@ const Review = lazy(() => import('./Review/Review'));
 
 export const App = () => {
   return (
-    <div className="container-sm">
+    <div className="container">
       <nav className={css.header}>
         <NavLink to="/" className={css.navLink}>
           Trending movies on the week

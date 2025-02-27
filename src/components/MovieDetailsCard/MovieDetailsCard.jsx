@@ -77,10 +77,18 @@ function MovieDeatilsCard({ movieDetails }) {
             <Link to="reviews" className={css.card_link}>
               Reviews
             </Link>
-            <button onClick={addMovie} disabled={findMovie}>
+            <button
+              className={css.button_watchList}
+              onClick={addMovie}
+              disabled={findMovie}
+            >
               Add to watchlist
             </button>
-            <button onClick={removeMovie} disabled={!findMovie}>
+            <button
+              className={css.button_watchList}
+              onClick={removeMovie}
+              disabled={!findMovie}
+            >
               Remove
             </button>
           </div>
