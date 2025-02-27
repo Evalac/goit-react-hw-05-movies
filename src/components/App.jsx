@@ -14,26 +14,40 @@ const Review = lazy(() => import('./Review/Review'));
 
 export const App = () => {
   return (
-    <div className="container">
+    <div className={css.container}>
       <nav className={css.header}>
-        <NavLink to="/" className={css.navLink}>
-          Trending movies on the week
-        </NavLink>
-        <NavLink to="/movies" className={css.navLink}>
-          Search movie
-        </NavLink>
-        <NavLink to="/popular" className={css.navLink}>
-          Popular
-        </NavLink>
-        <NavLink to="" className={css.navLink}>
-          Now Playing
-        </NavLink>
-        <NavLink to="" className={css.navLink}>
-          Upcoming
-        </NavLink>
-        <NavLink to="/watchlist" className={css.navLink}>
-          Watchlist
-        </NavLink>
+        <ul className={css.nav_list}>
+          <li>
+            <NavLink to="/" className={css.navLink}>
+              Trending movies on the week
+            </NavLink>
+          </li>
+          <li>
+            <NavLink to="/movies" className={css.navLink}>
+              Search movie
+            </NavLink>
+          </li>
+          <li>
+            <NavLink to="/popular" className={css.navLink}>
+              Popular
+            </NavLink>
+          </li>
+          <li>
+            <NavLink to="" className={css.navLink}>
+              Now Playing
+            </NavLink>
+          </li>
+          <li>
+            <NavLink to="" className={css.navLink}>
+              Upcoming
+            </NavLink>
+          </li>
+          <li>
+            <NavLink to="/watchlist" className={css.navLink}>
+              Watchlist
+            </NavLink>
+          </li>
+        </ul>
       </nav>
 
       <Routes>

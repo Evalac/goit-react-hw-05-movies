@@ -11,6 +11,15 @@
   background-color: rgba(48, 107, 233, 0.585);
   border-radius: 5px;
   margin-bottom: 10px;
+  @media screen and (max-width: 871px) {
+    background-color: aquamarine;
+  }
+}
+
+.nav_list {
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .navLink {
