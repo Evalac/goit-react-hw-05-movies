@@ -4,7 +4,7 @@ import * as API from '../services/ApiFetchServise';
 
 import Loader from 'components/Loader/Loader';
 import ResponseError from 'components/Errors/ResponseError';
-import PopularMoviesList from 'components/PopularMovies/PopularMoviesList';
+
 import UniversalMovieList from 'components/UniversalMoviesList/UniversalMoviesList';
 
 // movie/popular?language=en-US&page=${page}
