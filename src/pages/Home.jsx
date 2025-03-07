@@ -1,9 +1,13 @@
 import { useState, useEffect } from 'react';
-import { options, BASE_URL } from 'services/OptionsAPI';
+import * as API from '../services/ApiFetchServise';
+
+import UniversalMovieList from 'components/UniversalMoviesList/UniversalMoviesList';
 
 import MovieList from 'components/MovieList/MovieList';
 import Loader from 'components/Loader/Loader';
 import ResponseError from 'components/Errors/ResponseError';
+
+// trending/movie/week?language=en-US
 
 const Status = {
   IDLE: 'idle', //в режимі очікування
@@ -13,32 +17,21 @@ const Status = {
 };
 
 function Home() {
+  const [page, setPage] = useState(1);
   const [movieList, setMovieList] = useState([]);
   const [status, setStatus] = useState(Status.IDLE);
   const [error, setError] = useState(null);
 
-  async function fetchMovies() {
-    try {
-      console.log('виконується фетч на сторінці HOME');
-
-      const responce = await fetch(
-        `${BASE_URL}/trending/movie/week?language=en-US`,
-        options
-      );
-      if (!responce.ok) {
-        throw new Error(`HTTP error! Status: ${responce.status}`);
-      }
-      const data = await responce.json();
-      return data;
-    } catch (error) {
-      throw new Error('Вибаче щось пішло не так');
-    }
-  }
-
   useEffect(() => {
     setStatus(Status.PENDING);
-    fetchMovies()
+    API.FetchMovies(`trending/movie/week?language=en-US`, `${page}`)
       .then(data => {
+        if (page > 1) {
+          setMovieList(prevState => [...prevState, ...data.results]);
+          setStatus(Status.RESOLVED);
+          return;
+        }
+
         setMovieList(data.results);
         setStatus(Status.RESOLVED);
       })
@@ -46,8 +39,7 @@ function Home() {
         setError(error);
         setStatus(Status.REJECTED);
       });
-    // eslint-disable-next-line
-  }, []);
+  }, [page]);
 
   if (status === Status.PENDING) {
     return <Loader />;
@@ -56,7 +48,7 @@ function Home() {
     return <ResponseError error={error} />;
   }
   if (status === Status.RESOLVED) {
-    return <MovieList movieList={movieList} />;
+    return <UniversalMovieList movieList={movieList} setPage={setPage} />;
   }
 }
 
