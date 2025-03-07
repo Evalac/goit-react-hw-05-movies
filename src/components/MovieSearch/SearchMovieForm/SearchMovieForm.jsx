@@ -1,23 +1,6 @@
 import css from './SearchMovieForm.module.css';
 
-function SearchMovieForm({
-  searchParams,
-  fetchSearchMovie,
-  setMovies,
-  setSearchParams,
-}) {
-  const submitForm = e => {
-    e.preventDefault();
-    if (searchParams.get('query') === '') {
-      alert('Please enter movie name');
-    }
-    fetchSearchMovie()
-      .then(movie => {
-        setMovies(movie.results);
-      })
-      .catch(error => console.log(error));
-  };
-
+function SearchMovieForm({ searchParams, setSearchParams, submitForm }) {
   return (
     <>
       <form className={css.form_query} onSubmit={submitForm}>

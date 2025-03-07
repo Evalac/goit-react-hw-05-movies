@@ -1,16 +1,16 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useSearchParams, useLocation } from 'react-router-dom';
 import * as API from '../services/ApiFetchServise';
 
 import { options, BASE_URL } from 'services/OptionsAPI';
 
 import SearchMovieForm from 'components/MovieSearch/SearchMovieForm/SearchMovieForm';
-import SearchMovieList from 'components/MovieSearch/SearchMovieList/SearchMovieList';
 import UniversalMovieList from 'components/UniversalMoviesList/UniversalMoviesList';
 
 function Movies() {
   const [movies, setMovies] = useState([]);
   const [searchParams, setSearchParams] = useSearchParams('');
+  const [page, setPage] = useState(1);
   const queryValue = searchParams.get('query') ?? '';
 
   const location = useLocation();
@@ -21,7 +21,7 @@ function Movies() {
     try {
       console.log(`Виконується фетч пошуку фільму`);
       const responce = await fetch(
-        `${BASE_URL}/search/movie?query=${queryValue}`,
+        `${BASE_URL}/search/movie?query=${queryValue}&page=${page}`,
         options
       );
       const data = await responce.json();
@@ -31,17 +31,40 @@ function Movies() {
     }
   }
 
+  useEffect(() => {
+    fetchSearchMovie()
+      .then(movie => {
+        if (page > 1) {
+          setMovies(prevState => [...prevState, ...movie.results]);
+          return;
+        }
+        setMovies(movie.results);
+      })
+      .catch(error => console.log(error));
+  }, [page]);
+
+  const onSubmit = e => {
+    e.preventDefault();
+    if (searchParams.get('query') === '') {
+      alert('Please enter movie name');
+    }
+    fetchSearchMovie()
+      .then(movie => {
+        setMovies(movie.results);
+      })
+      .catch(error => console.log(error));
+  };
+
   return (
     <>
       <SearchMovieForm
         searchParams={searchParams}
-        fetchSearchMovie={fetchSearchMovie}
-        setMovies={setMovies}
         setSearchParams={setSearchParams}
+        submitForm={onSubmit}
       />
 
       {/* <SearchMovieList location={location} movies={movies} /> */}
-      <UniversalMovieList movieList={movies} />
+      <UniversalMovieList movieList={movies} setPage={setPage} />
     </>
   );
 }

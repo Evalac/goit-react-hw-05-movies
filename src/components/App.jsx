@@ -6,6 +6,8 @@ import css from './App.module.css';
 import NowPlayingPage from 'pages/NowPlayingPage';
 import UpcomingMoviesPage from 'pages/UpcomingMoviesPage';
 
+import TestPage from 'pages/TestPage';
+
 const Home = lazy(() => import('../pages/Home'));
 const MoviesDetails = lazy(() => import('../pages/MoviesDetails'));
 const Movies = lazy(() => import('../pages/Movies'));
@@ -66,6 +68,11 @@ export const App = () => {
               Watchlist
             </StyledLink>
           </li>
+          <li className={css.nav_list_item}>
+            <StyledLink to="/testpage" className={css.navLink}>
+              TestPage
+            </StyledLink>
+          </li>
         </ul>
       </nav>
 
@@ -76,6 +83,7 @@ export const App = () => {
         <Route path="watchlist" element={<Watchlist />} />
         <Route path="nowplaying" element={<NowPlayingPage />} />
         <Route path="upcoming" element={<UpcomingMoviesPage />} />
+        <Route path="testpage" element={<TestPage />} />
         <Route path=":category/:movieId" element={<MoviesDetails />}>
           <Route path="cast" element={<Cast />} />
           <Route path="reviews" element={<Review />} />
