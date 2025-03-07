@@ -6,9 +6,10 @@ import { options, BASE_URL } from 'services/OptionsAPI';
 
 import SearchMovieForm from 'components/MovieSearch/SearchMovieForm/SearchMovieForm';
 import SearchMovieList from 'components/MovieSearch/SearchMovieList/SearchMovieList';
+import UniversalMovieList from 'components/UniversalMoviesList/UniversalMoviesList';
 
 function Movies() {
-  const [movies, setMovies] = useState({ results: [] });
+  const [movies, setMovies] = useState([]);
   const [searchParams, setSearchParams] = useSearchParams('');
   const queryValue = searchParams.get('query') ?? '';
 
@@ -38,7 +39,9 @@ function Movies() {
         setMovies={setMovies}
         setSearchParams={setSearchParams}
       />
-      <SearchMovieList location={location} movies={movies} />
+
+      {/* <SearchMovieList location={location} movies={movies} /> */}
+      <UniversalMovieList movieList={movies} />
     </>
   );
 }

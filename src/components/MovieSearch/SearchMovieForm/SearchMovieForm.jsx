@@ -13,7 +13,7 @@ function SearchMovieForm({
     }
     fetchSearchMovie()
       .then(movie => {
-        setMovies(movie);
+        setMovies(movie.results);
       })
       .catch(error => console.log(error));
   };
