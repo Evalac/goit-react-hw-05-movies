@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { useSearchParams, useLocation } from 'react-router-dom';
+import * as API from '../services/ApiFetchServise';
 
 import { options, BASE_URL } from 'services/OptionsAPI';
 
@@ -12,6 +13,8 @@ function Movies() {
   const queryValue = searchParams.get('query') ?? '';
 
   const location = useLocation();
+
+  // API.FetchMovies(`search/movie?query=${queryValue}`, 1).then().catch();
 
   async function fetchSearchMovie() {
     try {

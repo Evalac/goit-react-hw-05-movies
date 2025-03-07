@@ -3,7 +3,6 @@ import * as API from '../services/ApiFetchServise';
 
 import UniversalMovieList from 'components/UniversalMoviesList/UniversalMoviesList';
 
-import MovieList from 'components/MovieList/MovieList';
 import Loader from 'components/Loader/Loader';
 import ResponseError from 'components/Errors/ResponseError';
 
