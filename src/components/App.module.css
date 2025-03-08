@@ -67,6 +67,7 @@
 .navLink {
   text-decoration: none;
   color: rgb(255, 255, 255);
+  font-weight: 800;
 
   &:hover {
     color: rgb(0, 98, 255);

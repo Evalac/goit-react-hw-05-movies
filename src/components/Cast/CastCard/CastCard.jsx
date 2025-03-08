@@ -5,7 +5,7 @@ function CastCard({ casts }) {
   return (
     <ul className={css.castList}>
       {casts.cast.map((cast, index) => (
-        <li key={cast.id} className={css.cast_List_Item}>
+        <li key={index} className={css.cast_List_Item}>
           <img
             className={css.cast_List_Item_Img}
             src={

@@ -1,6 +1,8 @@
 import noImage from '../../img/depositphotos_134263580-stock-photo-man-holding-card-with-question.jpg';
 import css from './UniversalMoviesList.module.css';
 
+import LoadMoreBtn from 'components/LoadMoreBtn/LoadMoreBtn';
+
 import { Link, useLocation } from 'react-router-dom';
 
 function UniversalMovieList({ movieList, setPage }) {
@@ -32,14 +34,7 @@ function UniversalMovieList({ movieList, setPage }) {
           </li>
         ))}
       </ul>
-      <button
-        className={css.load_more_btn}
-        onClick={() => {
-          setPage(prevState => prevState + 1);
-        }}
-      >
-        Load More
-      </button>
+      <LoadMoreBtn setPage={setPage} />
     </main>
   );
 }

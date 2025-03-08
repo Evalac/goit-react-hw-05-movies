@@ -40,15 +40,17 @@ function Home() {
       });
   }, [page]);
 
-  if (status === Status.PENDING) {
-    return <Loader />;
-  }
-  if (status === Status.REJECTED) {
-    return <ResponseError error={error} />;
-  }
-  if (status === Status.RESOLVED) {
-    return <UniversalMovieList movieList={movieList} setPage={setPage} />;
-  }
+  return <UniversalMovieList movieList={movieList} setPage={setPage} />;
+
+  // if (status === Status.PENDING) {
+  //   return <Loader />;
+  // }
+  // if (status === Status.REJECTED) {
+  //   return <ResponseError error={error} />;
+  // }
+  // if (status === Status.RESOLVED) {
+  //   return <UniversalMovieList movieList={movieList} setPage={setPage} />;
+  // }
 }
 
 export default Home;
