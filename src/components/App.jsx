@@ -17,14 +17,14 @@ const Watchlist = lazy(() => import('../pages/WatchList'));
 const Cast = lazy(() => import('../components/Cast/Cast'));
 const Review = lazy(() => import('./Review/Review'));
 
+const StyledLink = styled(NavLink)`
+  &.active {
+    color: rgb(0, 98, 255);
+  }
+`;
+
 export const App = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-
-  const StyledLink = styled(NavLink)`
-    &.active {
-      color: rgb(0, 98, 255);
-    }
-  `;
 
   const handleMenuClose = e => {
     if (e.target.tagName === 'A') {
