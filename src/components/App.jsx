@@ -18,12 +18,7 @@ const Cast = lazy(() => import('../components/Cast/Cast'));
 const Review = lazy(() => import('./Review/Review'));
 
 export const App = () => {
-  const [menuOpen, setMenuOpen] = useState(true);
-
-  const toggleMenu = () => {
-    setMenuOpen(!menuOpen);
-    console.log(menuOpen);
-  };
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   const StyledLink = styled(NavLink)`
     &.active {
@@ -31,50 +26,63 @@ export const App = () => {
     }
   `;
 
+  const handleMenuClose = e => {
+    if (e.target.tagName === 'A') {
+      setIsMenuOpen(false);
+    }
+  };
+
   return (
     <div className={css.container}>
-      <button className={css.burger} onClick={toggleMenu}>
-        Menu
-      </button>
-      <nav className={`${css.header} ${menuOpen ? css.nav_open : ''}`}>
-        <ul className={css.nav_list}>
-          <li className={css.nav_list_item}>
-            <StyledLink to="/" className={css.navLink}>
-              Trending movies on the week
-            </StyledLink>
-          </li>
-          <li className={css.nav_list_item}>
-            <StyledLink to="/popular" className={css.navLink}>
-              Popular
-            </StyledLink>
-          </li>
-          <li className={css.nav_list_item}>
-            <StyledLink to="/nowplaying" className={css.navLink}>
-              Now Playing
-            </StyledLink>
-          </li>
-          <li className={css.nav_list_item}>
-            <StyledLink to="/upcoming" className={css.navLink}>
-              Upcoming
-            </StyledLink>
-          </li>
-          <li className={css.nav_list_item}>
-            <StyledLink to="/movies" className={css.navLink}>
-              Search movie
-            </StyledLink>
-          </li>
-          <li className={css.nav_list_item}>
-            <StyledLink to="/watchlist" className={css.navLink}>
-              Watchlist
-            </StyledLink>
-          </li>
-          <li className={css.nav_list_item}>
-            <StyledLink to="/testpage" className={css.navLink}>
-              TestPage
-            </StyledLink>
-          </li>
-        </ul>
-      </nav>
+      <header className={css.header}>
+        <nav className={`${css.nav} ${isMenuOpen ? css.open : ''}`}>
+          <ul className={css.nav_list} onClick={handleMenuClose}>
+            <li className={css.nav_list_item}>
+              <StyledLink to="/" className={css.navLink}>
+                Trending movies on the week
+              </StyledLink>
+            </li>
+            <li className={css.nav_list_item}>
+              <StyledLink to="/popular" className={css.navLink}>
+                Popular
+              </StyledLink>
+            </li>
+            <li className={css.nav_list_item}>
+              <StyledLink to="/nowplaying" className={css.navLink}>
+                Now Playing
+              </StyledLink>
+            </li>
+            <li className={css.nav_list_item}>
+              <StyledLink to="/upcoming" className={css.navLink}>
+                Upcoming
+              </StyledLink>
+            </li>
+            <li className={css.nav_list_item}>
+              <StyledLink to="/movies" className={css.navLink}>
+                Search movie
+              </StyledLink>
+            </li>
+            <li className={css.nav_list_item}>
+              <StyledLink to="/watchlist" className={css.navLink}>
+                Watchlist
+              </StyledLink>
+            </li>
+            <li className={css.nav_list_item}>
+              <StyledLink to="/testpage" className={css.navLink}>
+                TestPage
+              </StyledLink>
+            </li>
+          </ul>
+        </nav>
+        <div
+          className={`${css.burger} ${isMenuOpen ? css.active : ''}`}
+          onClick={() => {
+            setIsMenuOpen(prevState => !prevState);
+          }}
+        >
+          <span></span>
+        </div>
+      </header>
 
       <Routes>
         <Route path="/" element={<Home />} />

@@ -22,6 +22,10 @@
   &:hover {
     transform: scale(0.9);
   }
+
+  @media screen and (max-width: 480px) {
+    margin-left: 0px;
+  }
 }
 
 .movie_list_item_link {

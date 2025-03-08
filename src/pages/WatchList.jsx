@@ -1,12 +1,11 @@
-import WatchListItem from 'components/WatchList/WatchListItems';
+import UniversalMovieList from 'components/UniversalMoviesList/UniversalMoviesList';
 import { useLocation } from 'react-router-dom';
 
 function Watchlist() {
   const moviesIdarr = JSON.parse(localStorage.getItem('watchlist'));
   const location = useLocation();
-  console.log(location);
 
-  return <WatchListItem moviesIdarr={moviesIdarr} />;
+  return <UniversalMovieList movieList={moviesIdarr} />;
 }
 
 export default Watchlist;
