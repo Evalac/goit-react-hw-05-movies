@@ -1,11 +1,11 @@
 import { useEffect, useState } from 'react';
-import { useSearchParams, useLocation } from 'react-router-dom';
-import * as API from '../services/ApiFetchServise';
+import { useSearchParams } from 'react-router-dom';
 
 import { options, BASE_URL } from 'services/OptionsAPI';
 
 import SearchMovieForm from 'components/MovieSearch/SearchMovieForm/SearchMovieForm';
 import UniversalMovieList from 'components/UniversalMoviesList/UniversalMoviesList';
+import LoadMoreBtn from 'components/LoadMoreBtn/LoadMoreBtn';
 
 function Movies() {
   const [movies, setMovies] = useState([]);
@@ -13,7 +13,7 @@ function Movies() {
   const [page, setPage] = useState(1);
   const queryValue = searchParams.get('query') ?? '';
 
-  const location = useLocation();
+  // const location = useLocation();
 
   // API.FetchMovies(`search/movie?query=${queryValue}`, 1).then().catch();
 
@@ -41,6 +41,7 @@ function Movies() {
         setMovies(movie.results);
       })
       .catch(error => console.log(error));
+    // eslint-disable-next-line
   }, [page]);
 
   const onSubmit = e => {
@@ -64,7 +65,8 @@ function Movies() {
       />
 
       {/* <SearchMovieList location={location} movies={movies} /> */}
-      <UniversalMovieList movieList={movies} setPage={setPage} />
+      <UniversalMovieList movieList={movies} />
+      {movies.length > 0 && <LoadMoreBtn setPage={setPage} />}
     </>
   );
 }

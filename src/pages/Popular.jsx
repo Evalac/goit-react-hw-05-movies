@@ -1,9 +1,10 @@
 import { useEffect, useState } from 'react';
 
 import * as API from '../services/ApiFetchServise';
-
-import Loader from 'components/Loader/Loader';
+// eslint-disable-next-line
+import Loader from 'components/Loader/Loader'; // eslint-disable-next-line
 import ResponseError from 'components/Errors/ResponseError';
+import LoadMoreBtn from 'components/LoadMoreBtn/LoadMoreBtn';
 
 import UniversalMovieList from 'components/UniversalMoviesList/UniversalMoviesList';
 
@@ -18,8 +19,8 @@ const Status = {
 
 function Popular(params) {
   const [popularMovie, setPopularMovie] = useState([]);
-  const [page, setPage] = useState(1);
-  const [error, setError] = useState(null);
+  const [page, setPage] = useState(1); // eslint-disable-next-line
+  const [error, setError] = useState(null); // eslint-disable-next-line
   const [status, setStatus] = useState(Status.IDLE);
 
   useEffect(() => {
@@ -35,7 +36,12 @@ function Popular(params) {
       .catch(error => setError(error));
   }, [page]);
 
-  return <UniversalMovieList movieList={popularMovie} setPage={setPage} />;
+  return (
+    <>
+      <UniversalMovieList movieList={popularMovie} setPage={setPage} />
+      {popularMovie.length > 0 && <LoadMoreBtn setPage={setPage} />}
+    </>
+  );
 
   // if (status === Status.PENDING) {
   //   return <Loader />;

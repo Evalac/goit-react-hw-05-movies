@@ -3,10 +3,11 @@ import { useEffect, useState } from 'react';
 import * as API from '../services/ApiFetchServise';
 
 import UniversalMovieList from 'components/UniversalMoviesList/UniversalMoviesList';
+import LoadMoreBtn from 'components/LoadMoreBtn/LoadMoreBtn';
 
 function UpcomingMoviesPage(params) {
   const [page, setPage] = useState(1);
-  const [movies, setMovies] = useState([]);
+  const [movies, setMovies] = useState([]); // eslint-disable-next-line
   const [error, setError] = useState(null);
 
   useEffect(() => {
@@ -21,7 +22,12 @@ function UpcomingMoviesPage(params) {
       .catch(error => setError(error));
   }, [page]);
 
-  return <UniversalMovieList movieList={movies} setPage={setPage} />;
+  return (
+    <>
+      <UniversalMovieList movieList={movies} />;
+      {movies.length > 0 && <LoadMoreBtn setPage={setPage} />}
+    </>
+  );
 }
 
 export default UpcomingMoviesPage;

@@ -1,9 +1,10 @@
 import { useEffect, useState } from 'react';
 import * as API from '../services/ApiFetchServise';
 
-import UniversalMovieList from 'components/UniversalMoviesList/UniversalMoviesList';
-import Loader from 'components/Loader/Loader';
+import UniversalMovieList from 'components/UniversalMoviesList/UniversalMoviesList'; // eslint-disable-next-line
+import Loader from 'components/Loader/Loader'; // eslint-disable-next-line
 import ResponseError from 'components/Errors/ResponseError';
+import LoadMoreBtn from 'components/LoadMoreBtn/LoadMoreBtn';
 
 const Status = {
   IDLE: 'idle',
@@ -14,8 +15,8 @@ const Status = {
 
 function NowPlayingPage() {
   const [page, setPage] = useState(1);
-  const [movies, setMovies] = useState([]);
-  const [error, setError] = useState(null);
+  const [movies, setMovies] = useState([]); // eslint-disable-next-line
+  const [error, setError] = useState(null); // eslint-disable-next-line
   const [status, setStatus] = useState(Status.IDLE);
 
   useEffect(() => {
@@ -39,7 +40,12 @@ function NowPlayingPage() {
       .finally();
   }, [page]);
 
-  return <UniversalMovieList movieList={movies} setPage={setPage} />;
+  return (
+    <>
+      <UniversalMovieList movieList={movies} />;
+      {movies.length > 0 && <LoadMoreBtn setPage={setPage} />}
+    </>
+  );
 
   // if (status === Status.PENDING) {
   //   return <Loader />;
