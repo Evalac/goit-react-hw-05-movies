@@ -3,7 +3,7 @@ import css from './UniversalMoviesList.module.css';
 
 import { Link, useLocation } from 'react-router-dom';
 
-function UniversalMovieList({ movieList, setPage }) {
+function UniversalMovieList({ movieList }) {
   const location = useLocation();
 
   return (

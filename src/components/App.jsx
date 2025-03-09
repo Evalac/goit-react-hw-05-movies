@@ -8,7 +8,6 @@ import UpcomingMoviesPage from 'pages/UpcomingMoviesPage';
 
 import TestPage from 'pages/TestPage';
 
-const Home = lazy(() => import('../pages/Home'));
 const MoviesDetails = lazy(() => import('../pages/MoviesDetails'));
 const Movies = lazy(() => import('../pages/Movies'));
 const Popular = lazy(() => import('../pages/Popular'));
@@ -37,11 +36,6 @@ export const App = () => {
       <header className={css.header}>
         <nav className={`${css.nav} ${isMenuOpen ? css.open : ''}`}>
           <ul className={css.nav_list} onClick={handleMenuClose}>
-            <li className={css.nav_list_item}>
-              <StyledLink to="/" className={css.navLink}>
-                Trending movies on the week
-              </StyledLink>
-            </li>
             <li className={css.nav_list_item}>
               <StyledLink to="/popular" className={css.navLink}>
                 Popular
@@ -85,7 +79,6 @@ export const App = () => {
       </header>
 
       <Routes>
-        <Route path="/" element={<Home />} />
         <Route path="movies" element={<Movies />} />
         <Route path="popular" element={<Popular />} />
         <Route path="watchlist" element={<Watchlist />} />
