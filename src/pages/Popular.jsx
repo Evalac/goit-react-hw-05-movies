@@ -8,8 +8,6 @@ import LoadMoreBtn from 'components/LoadMoreBtn/LoadMoreBtn';
 
 import UniversalMovieList from 'components/UniversalMoviesList/UniversalMoviesList';
 
-// movie/popular?language=en-US&page=${page}
-
 const Status = {
   IDLE: 'idle',
   PENDING: 'pending',
@@ -24,34 +22,38 @@ function Popular(params) {
   const [status, setStatus] = useState(Status.IDLE);
 
   useEffect(() => {
+    setStatus(Status.PENDING);
     API.FetchMovies(`movie/popular?language=en-US`, `${page}`)
       .then(data => {
         if (page > 1) {
           setPopularMovie(prevState => [...prevState, ...data.results]);
+          setStatus(Status.RESOLVED);
           return;
         }
 
         setPopularMovie(data.results);
+        setStatus(Status.RESOLVED);
       })
-      .catch(error => setError(error));
+      .catch(error => {
+        setError(error);
+        setStatus(Status.REJECTED);
+      });
   }, [page]);
 
-  return (
-    <>
-      <UniversalMovieList movieList={popularMovie} setPage={setPage} />
-      {popularMovie.length > 0 && <LoadMoreBtn setPage={setPage} />}
-    </>
-  );
-
-  // if (status === Status.PENDING) {
-  //   return <Loader />;
-  // }
-  // if (status === Status.RESOLVED) {
-  //   return <PopularMoviesList movieList={popularMovie} setPage={setPage} />;
-  // }
-  // if (status === Status.REJECTED) {
-  //   return <ResponseError error={error} />;
-  // }
+  if (status === Status.PENDING && page === 1) {
+    return <Loader />;
+  }
+  if (status === Status.RESOLVED) {
+    return (
+      <>
+        <UniversalMovieList movieList={popularMovie} setPage={setPage} />
+        {popularMovie.length > 0 && <LoadMoreBtn setPage={setPage} />}
+      </>
+    );
+  }
+  if (status === Status.REJECTED) {
+    return <ResponseError error={error} />;
+  }
 }
 
 export default Popular;
