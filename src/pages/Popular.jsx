@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useCallback, useMemo } from 'react';
 
 import * as API from '../services/ApiFetchServise';
 // eslint-disable-next-line
@@ -7,6 +7,9 @@ import ResponseError from 'components/Errors/ResponseError';
 import LoadMoreBtn from 'components/LoadMoreBtn/LoadMoreBtn';
 
 import UniversalMovieList from 'components/UniversalMoviesList/UniversalMoviesList';
+
+console.log(useCallback);
+console.log(useMemo);
 
 const Status = {
   IDLE: 'idle',
