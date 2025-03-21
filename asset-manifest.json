@@ -1,7 +1,7 @@
 {
   "files": {
     "main.css": "/goit-react-hw-05-movies/static/css/main.20c25775.css",
-    "main.js": "/goit-react-hw-05-movies/static/js/main.764c55f0.js",
+    "main.js": "/goit-react-hw-05-movies/static/js/main.5a54e232.js",
     "static/css/345.75d83d53.chunk.css": "/goit-react-hw-05-movies/static/css/345.75d83d53.chunk.css",
     "static/js/345.97760bae.chunk.js": "/goit-react-hw-05-movies/static/js/345.97760bae.chunk.js",
     "static/css/905.5ee5f474.chunk.css": "/goit-react-hw-05-movies/static/css/905.5ee5f474.chunk.css",
@@ -15,7 +15,7 @@
     "static/media/depositphotos_134263580-stock-photo-man-holding-card-with-question.jpg": "/goit-react-hw-05-movies/static/media/depositphotos_134263580-stock-photo-man-holding-card-with-question.f63350cfe39a675c3fe4.jpg",
     "index.html": "/goit-react-hw-05-movies/index.html",
     "main.20c25775.css.map": "/goit-react-hw-05-movies/static/css/main.20c25775.css.map",
-    "main.764c55f0.js.map": "/goit-react-hw-05-movies/static/js/main.764c55f0.js.map",
+    "main.5a54e232.js.map": "/goit-react-hw-05-movies/static/js/main.5a54e232.js.map",
     "345.75d83d53.chunk.css.map": "/goit-react-hw-05-movies/static/css/345.75d83d53.chunk.css.map",
     "345.97760bae.chunk.js.map": "/goit-react-hw-05-movies/static/js/345.97760bae.chunk.js.map",
     "905.5ee5f474.chunk.css.map": "/goit-react-hw-05-movies/static/css/905.5ee5f474.chunk.css.map",
@@ -29,6 +29,6 @@
   },
   "entrypoints": [
     "static/css/main.20c25775.css",
-    "static/js/main.764c55f0.js"
+    "static/js/main.5a54e232.js"
   ]
 }
