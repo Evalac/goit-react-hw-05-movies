@@ -1,16 +1,16 @@
 import css from './LoadMoreBtn.module.css';
-import { useCallback } from 'react';
 
-const LoadMoreBtn = ({ setPage }) => {
-  const handleClick = useCallback(() => {
-    setPage(prevState => prevState + 1);
-  }, [setPage]);
-
+function LoadMoreBtn({ setPage }) {
   return (
-    <button className={css.load_more_btn} onClick={handleClick}>
+    <button
+      className={css.load_more_btn}
+      onClick={() => {
+        setPage(prevState => prevState + 1);
+      }}
+    >
       Load More
     </button>
   );
-};
+}
 
 export default LoadMoreBtn;
