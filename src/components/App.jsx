@@ -9,7 +9,6 @@ import UpcomingMoviesPage from 'pages/UpcomingMoviesPage';
 import TestPage from 'pages/TestPage';
 
 const MoviesDetails = lazy(() => import('../pages/MoviesDetails'));
-const Movies = lazy(() => import('../pages/Movies'));
 const Popular = lazy(() => import('../pages/Popular'));
 const Watchlist = lazy(() => import('../pages/WatchList'));
 
@@ -79,7 +78,6 @@ export const App = () => {
       </header>
 
       <Routes>
-        <Route path="movies" element={<Movies />} />
         <Route path="popular" element={<Popular />} />
         <Route path="watchlist" element={<Watchlist />} />
         <Route path="nowplaying" element={<NowPlayingPage />} />
