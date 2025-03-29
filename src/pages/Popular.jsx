@@ -55,7 +55,7 @@ function Popular() {
     <>
       <UniversalMovieList movieList={popularMovie} setPage={setPage} />
       {isLoading && <Loader />}
-      {popularMovie.length > 0 && <LoadMoreBtn setPage={setPage} page={page} />}
+      {popularMovie.length > 0 && <LoadMoreBtn setPage={setPage} />}
     </>
   );
 }

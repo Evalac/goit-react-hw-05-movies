@@ -1,7 +1,7 @@
-import { useEffect, useRef } from 'react';
+import { useRef } from 'react';
 import css from './LoadMoreBtn.module.css';
 
-function LoadMoreBtn({ setPage, page }) {
+function LoadMoreBtn({ setPage }) {
   const buttonRef = useRef();
 
   return (

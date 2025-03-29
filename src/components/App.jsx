@@ -72,9 +72,7 @@ export const App = () => {
           onClick={() => {
             setIsMenuOpen(prevState => !prevState);
           }}
-        >
-          <span></span>
-        </div>
+        ></div>
       </header>
 
       <Routes>

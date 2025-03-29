@@ -5,6 +5,7 @@ import { Link, useLocation } from 'react-router-dom';
 
 function UniversalMovieList({ movieList }) {
   const location = useLocation();
+  console.log(location);
 
   return (
     <main>
